@@ -2,4 +2,26 @@
 - hosts: phoronix
   gather_facts: no
   become: yes
-  
+  - name: install epel-release
+    package: epel-release
+    state: latest
+  - name: install bzip2 phoronix-test-suite.noarch unzip
+    package: bzip2 phoronix-test-suite.noarch unzip
+    state: latest
+  - name: Set the rating to 11
+  xml:
+    path: /etc/phoronix-test-suite.xml
+    xpath: /PhoronixTestSuite/Options/BatchMode/SaveResults
+    value: TRUE
+    xpath: /PhoronixTestSuite/Options/BatchMode/OpenBrowser
+    value: FALSE
+    xpath: /PhoronixTestSuite/Options/BatchMode/UploadResults
+    value: FALSE
+    xpath: /PhoronixTestSuite/Options/BatchMode/PromptForTestIdentifier
+    value: FALSE
+    xpath: /PhoronixTestSuite/Options/BatchMode/PromptSaveName
+    value: FALSE
+    xpath: /PhoronixTestSuite/Options/BatchMode/RunAllTestCombinations
+    value: TRUE
+    xpath: /PhoronixTestSuite/Options/BatchMode/Configured
+    value: TRUE
