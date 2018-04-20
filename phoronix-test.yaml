@@ -2,26 +2,63 @@
 - hosts: phoronix
   gather_facts: no
   become: yes
-  - name: install epel-release
-    package: epel-release
-    state: latest
-  - name: install bzip2 phoronix-test-suite.noarch unzip
-    package: bzip2 phoronix-test-suite.noarch unzip
-    state: latest
-  - name: Set the rating to 11
-  xml:
-    path: /etc/phoronix-test-suite.xml
-    xpath: /PhoronixTestSuite/Options/BatchMode/SaveResults
-    value: TRUE
-    xpath: /PhoronixTestSuite/Options/BatchMode/OpenBrowser
-    value: FALSE
-    xpath: /PhoronixTestSuite/Options/BatchMode/UploadResults
-    value: FALSE
-    xpath: /PhoronixTestSuite/Options/BatchMode/PromptForTestIdentifier
-    value: FALSE
-    xpath: /PhoronixTestSuite/Options/BatchMode/PromptSaveName
-    value: FALSE
-    xpath: /PhoronixTestSuite/Options/BatchMode/RunAllTestCombinations
-    value: TRUE
-    xpath: /PhoronixTestSuite/Options/BatchMode/Configured
-    value: TRUE
+  tasks:
+    - name: install epel-release
+      yum:
+        name: epel-release
+        state: latest
+    - name: install bzip2
+      yum:
+        name: bzip2
+        state: latest
+    - name: install phoronix-test-suite.noarch
+      yum:
+        name: phoronix-test-suite.noarch
+        state: latest
+    - name: install unzip
+      yum:
+        name: unzip
+        state: latest
+    - name: install python-lxml.x86_64 for managing xml
+      yum:
+        name: python-lxml.x86_64
+        state: latest
+    - name: run phoronix install tests phoronix-test-suite install pts/john-the-ripper pts/phpbench pts/pybench pts/scimark2 pts/ramspeed pts/stream pts/x264 system/apache pts/povray pts/openssl pts/build-linux-kernel
+      command: phoronix-test-suite install pts/john-the-ripper pts/phpbench pts/pybench pts/scimark2 pts/ramspeed pts/stream pts/x264 system/apache pts/povray pts/openssl pts/build-linux-kernel
+      args:
+        creates: /etc/phoronix-test-suite.xml
+    - name: Set the /PhoronixTestSuite/Options/BatchMode/SaveResults=TRUE
+      xml:
+        path: /etc/phoronix-test-suite.xml
+        xpath: /PhoronixTestSuite/Options/BatchMode/SaveResults
+        value: 'TRUE'
+    - name: Set the /PhoronixTestSuite/Options/BatchMode/OpenBrowser=FALSE
+      xml:
+        path: /etc/phoronix-test-suite.xml
+        xpath: /PhoronixTestSuite/Options/BatchMode/OpenBrowser
+        value: 'FALSE'
+    - name: Set the /PhoronixTestSuite/Options/BatchMode/UploadResults=FALSE
+      xml:
+        path: /etc/phoronix-test-suite.xml
+        xpath: /PhoronixTestSuite/Options/BatchMode/UploadResults
+        value: 'FALSE'
+    - name: Set the /PhoronixTestSuite/Options/BatchMode/PromptForTestIdentifier=FALSE
+      xml:
+        path: /etc/phoronix-test-suite.xml
+        xpath: /PhoronixTestSuite/Options/BatchMode/PromptForTestIdentifier
+        value: 'FALSE'
+    - name: Set the /PhoronixTestSuite/Options/BatchMode/PromptSaveName=FALSE
+      xml:
+        path: /etc/phoronix-test-suite.xml
+        xpath: /PhoronixTestSuite/Options/BatchMode/PromptSaveName
+        value: 'FALSE'
+    - name: Set the /PhoronixTestSuite/Options/BatchMode/RunAllTestCombinations=TRUE
+      xml:
+        path: /etc/phoronix-test-suite.xml
+        xpath: /PhoronixTestSuite/Options/BatchMode/RunAllTestCombinations
+        value: 'TRUE'
+    - name: Set the /PhoronixTestSuite/Options/BatchMode/Configured=TRUE
+      xml:
+        path: /etc/phoronix-test-suite.xml
+        xpath: /PhoronixTestSuite/Options/BatchMode/Configured
+        value: 'TRUE'
