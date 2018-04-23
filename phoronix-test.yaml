@@ -44,8 +44,8 @@
         src: /usr/bin/python36
         dest: /usr/bin/python3
         state: link
-    - name: run phoronix batch-install tests phoronix-test-suite install pts/john-the-ripper pts/phpbench pts/pybench pts/scimark2 pts/ramspeed pts/stream pts/x264 system/apache pts/povray pts/openssl pts/build-linux-kernel
-      command: phoronix-test-suite batch-install pts/john-the-ripper pts/phpbench pts/pybench pts/scimark2 pts/ramspeed pts/stream pts/x264 system/apache pts/povray pts/openssl pts/build-linux-kernel
+    - name: run phoronix batch-install tests phoronix-test-suite install pts/john-the-ripper pts/phpbench pts/pybench pts/scimark2 pts/ramspeed pts/stream pts/x264 pts/ffmpeg system/apache pts/povray pts/openssl pts/build-linux-kernel pts/gnupg pts/compression pts/redis
+      command: phoronix-test-suite batch-install pts/john-the-ripper pts/phpbench pts/pybench pts/scimark2 pts/ramspeed pts/stream pts/x264 pts/ffmpeg system/apache pts/povray pts/openssl pts/build-linux-kernel pts/gnupg pts/compression pts/redis
       args:
         creates: /etc/phoronix-test-suite.xml
     - name: Set the /PhoronixTestSuite/Options/BatchMode/SaveResults=TRUE
@@ -94,6 +94,6 @@
         delay: 30
         timeout: 600
         state: started
-    - name: run phoronix batch-benchmark tests phoronix-test-suite install pts/john-the-ripper pts/phpbench pts/pybench pts/scimark2 pts/ramspeed pts/stream pts/x264 system/apache pts/povray pts/openssl pts/build-linux-kernel
-      command: phoronix-test-suite batch-benchmark pts/john-the-ripper pts/phpbench pts/pybench pts/scimark2 pts/ramspeed pts/stream pts/x264 system/apache pts/povray pts/openssl pts/build-linux-kernel
+    - name: run phoronix batch-benchmark tests pts/john-the-ripper pts/phpbench pts/pybench pts/scimark2 pts/ramspeed pts/stream pts/x264 pts/ffmpeg system/apache pts/povray pts/openssl pts/build-linux-kernel pts/gnupg pts/compression pts/redis
+      command: phoronix-test-suite batch-benchmark pts/john-the-ripper pts/phpbench pts/pybench pts/scimark2 pts/ramspeed pts/stream pts/x264 pts/ffmpeg system/apache pts/povray pts/openssl pts/build-linux-kernel pts/gnupg pts/compression pts/redis
     
