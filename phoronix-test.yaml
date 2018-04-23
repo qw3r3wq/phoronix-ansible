@@ -39,6 +39,10 @@
       yum:
         name: p7zip-plugins
         state: latest
+    - name: install liberation-sans-fonts.noarch for result-file-to-pdf
+      yum:
+        name: liberation-sans-fonts.noarch
+        state: latest
     - name: ln -s /usr/bin/python36 /usr/bin/python3
       file:
         src: /usr/bin/python36
