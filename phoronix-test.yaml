@@ -27,6 +27,16 @@
       yum:
         name: python-lxml.x86_64
         state: latest
+    - name: install python36
+      yum:
+        name: python36.x86_64
+        state: latest
+    - file:
+      src: /usr/bin/python36
+      dest: /usr/bin/python3
+      # owner: foo
+      # group: foo
+      state: link
     - name: run phoronix install tests phoronix-test-suite install pts/john-the-ripper pts/phpbench pts/pybench pts/scimark2 pts/ramspeed pts/stream pts/x264 system/apache pts/povray pts/openssl pts/build-linux-kernel
       command: phoronix-test-suite install pts/john-the-ripper pts/phpbench pts/pybench pts/scimark2 pts/ramspeed pts/stream pts/x264 system/apache pts/povray pts/openssl pts/build-linux-kernel
       args:
@@ -73,7 +83,7 @@
     - name: waiting for server booting up
       local_action: wait_for
       args:
-        host: ''
+        # host: ''
         port: 22
         delay: 30
         timeout: 600
