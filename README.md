@@ -1,2 +1,2 @@
 # phoronix-ansible
-First try toautomate phoronix test suite, setup and one test.
+First try to automate phoronix test suite, setup and one test.
