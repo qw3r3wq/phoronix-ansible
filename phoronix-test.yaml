@@ -7,6 +7,10 @@
       yum:
         name: epel-release
         state: latest
+    - name: update
+      yum:
+        name: '*'
+        state: latest
     - name: install bzip2
       yum:
         name: bzip2
@@ -62,3 +66,18 @@
         path: /etc/phoronix-test-suite.xml
         xpath: /PhoronixTestSuite/Options/BatchMode/Configured
         value: 'TRUE'
+    - name: reboot host
+      shell: sleep 10 && sync && sync && /usr/sbin/reboot
+      async: 300
+      poll: 0
+    - name: waiting for server booting up
+      local_action: wait_for
+      args:
+        host: ''
+        port: 22
+        delay: 30
+        timeout: 600
+        state: started
+    - name: run phoronix batch-benchmark tests phoronix-test-suite install pts/john-the-ripper pts/phpbench pts/pybench pts/scimark2 pts/ramspeed pts/stream pts/x264 system/apache pts/povray pts/openssl pts/build-linux-kernel
+      command: phoronix-test-suite batch-benchmark pts/john-the-ripper pts/phpbench pts/pybench pts/scimark2 pts/ramspeed pts/stream pts/x264 system/apache pts/povray pts/openssl pts/build-linux-kernel
+    
