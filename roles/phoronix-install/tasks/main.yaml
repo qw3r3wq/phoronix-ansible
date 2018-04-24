@@ -38,5 +38,3 @@
     path: /etc/phoronix-test-suite.xml
     xpath: /PhoronixTestSuite/Options/BatchMode/Configured
     value: 'TRUE'
-- name: run phoronix batch-benchmark tests pts/john-the-ripper pts/phpbench pts/pybench pts/scimark2 pts/ramspeed pts/stream pts/x264 pts/ffmpeg system/apache pts/povray pts/openssl pts/build-linux-kernel pts/gnupg pts/compression pts/redis
-  command: phoronix-test-suite batch-benchmark pts/john-the-ripper pts/phpbench pts/pybench pts/scimark2 pts/ramspeed pts/stream pts/x264 pts/ffmpeg system/apache pts/povray pts/openssl pts/build-linux-kernel pts/gnupg pts/compression pts/redis
