@@ -1,4 +1,4 @@
 # phoronix-ansible
 First try to automate phoronix test suite, setup and one test.
 
-Sorry, but cyurrently tested only with CentOS 7
+Sorry, but currently tested only with CentOS 7
