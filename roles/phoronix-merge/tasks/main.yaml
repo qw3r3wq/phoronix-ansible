@@ -7,11 +7,11 @@
   register: dir_list
 #- debug: var=dir_list
 
-- name: /var/lib/phoronix-test-suite/test-results/*/composite.xml to {{ ansible_host }} {{ item.path|dirname }}
+- name: /var/lib/phoronix-test-suite/test-results/*/composite.xml to {{ ansible_host }} {{ item.path|basename }}
   xml:
     path: '{{ item.path }}/composite.xml'
     xpath: /PhoronixTestSuite/System/Identifier
-    value: '{{ ansible_host }} {{ item.path|dirname }}'
+    value: '{{ ansible_host }} {{ item.path|basename }}'
   loop: '{{ dir_list.files }}'
 #- name: test 2
 #  xml:
