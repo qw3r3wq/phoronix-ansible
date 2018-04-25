@@ -31,13 +31,13 @@
     file_type: directory
     contains: merge-
   register: dir_list
-  
+
 - name: phoronix-test-suite result-file-to-pdf merge-*
   command: phoronix-test-suite result-file-to-pdf {{ dir_list.files | map(attribute='path') | map('basename') | join(' ') }}
-  
 - name: fetch merged pdf
-  src: /root/merge*.pdf
-  dest: /tmp/merged-pdf-{{ansible_hostname}}/
-  flat: yes
+  fetch:
+    src: /root/merge*.pdf
+    dest: /tmp/merged-pdf-{{ansible_hostname}}/
+    flat: yes
 - name: Remove /var/lib/phoronix-test-suite/test-results/merge-* and /root/merge-*
   command: rm -rf /var/lib/phoronix-test-suite/test-results/merge-* /root/merge-*
