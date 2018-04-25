@@ -1,10 +1,13 @@
 ---
-- name: test
+- 
+  name: test
   xml:
     path: "/var/lib/phoronix-test-suite/test-results/{{ dir_list }}/composite.xml"
     xpath: /PhoronixTestSuite/System/Identifier
     value: "{{ ansible_host }} {{ dir_list }}"
   loop: "{{ dir_list }}"
+-
+  name: test 2
   xml:
     path: /var/lib/phoronix-test-suite/test-results/{{ dir_list }}/composite.xml
     xpath: /PhoronixTestSuite/Result/Data/Entry/Identifier
