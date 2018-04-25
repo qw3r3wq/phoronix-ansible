@@ -33,7 +33,8 @@
   register: dir_list
 
 - name: phoronix-test-suite result-file-to-pdf merge-*
-  command: phoronix-test-suite result-file-to-pdf {{ dir_list.path | basename }}
+  command: phoronix-test-suite result-file-to-pdf {{ item.path|basename }}
+  loop: '{{ dir_list.files }}'
 - name: fetch merged pdf
   fetch:
     src: /root/merge*.pdf
