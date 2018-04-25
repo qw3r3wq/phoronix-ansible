@@ -4,7 +4,7 @@
     paths: /var/lib/phoronix-test-suite/test-results
     recurse: no
     file_type: directory
-    patterns: ".*?\\.(?!:merge\\.*)"
+    patterns:'!merge*'
     use_regex: yes
   register: dir_list
 #- debug: var=dir_list
@@ -30,7 +30,7 @@
     paths: /var/lib/phoronix-test-suite/test-results
     recurse: no
     file_type: directory
-    patterns: ".*?\\.(?:merge\\.*)"
+    patterns: 'merge*'
     use_regex: yes
   register: dir_list
 
