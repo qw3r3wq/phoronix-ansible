@@ -9,7 +9,7 @@
 
 - name: '{{ item.path }} to {{ ansible_host }} {{ item.path }}'
   xml:
-    path: {{ item.path }}/composite.xml
+    path: '{{ item.path }}/composite.xml'
     xpath: /PhoronixTestSuite/System/Identifier
     value: '{{ ansible_host }} {{ item.path }}'
   loop: {{ dir_list.files }}
