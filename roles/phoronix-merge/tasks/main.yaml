@@ -1,15 +1,15 @@
 ---
 - 
-  name: test
+  name: "/var/lib/phoronix-test-suite/test-results/{{ dir_list }}/composite.xml to {{ ansible_host }} {{ item.value }}
   xml:
     path: "/var/lib/phoronix-test-suite/test-results/{{ dir_list }}/composite.xml"
     xpath: /PhoronixTestSuite/System/Identifier
-    value: "{{ ansible_host }} {{ dir_list }}"
-  loop: "{{ lookup('dict', dir_list) }}"
+    value: "{{ ansible_host }} {{ item.value }}"
+  loop: "{{ lookup('dict', dir_list|default({})) }}"
 -
   name: test 2
   xml:
     path: /var/lib/phoronix-test-suite/test-results/{{ dir_list }}/composite.xml
     xpath: /PhoronixTestSuite/Result/Data/Entry/Identifier
-    value: "{{ ansible_host }} {{ dir_list }}"
-  loop: "{{ lookup('dict', dir_list) }}"
+    value: "{{ ansible_host }} {{ item.value }}"
+  loop: "{{ lookup('dict', dir_list|default({})) }}"
