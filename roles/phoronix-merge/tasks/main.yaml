@@ -4,6 +4,7 @@
     paths: /var/lib/phoronix-test-suite/test-results
     recurse: no
     file_type: directory
+    excludes: merge-*
   register: dir_list
 #- debug: var=dir_list
 
@@ -19,3 +20,22 @@
     xpath: /PhoronixTestSuite/Result/Data/Entry/Identifier
     value: '{{ ansible_hostname }} {{ item.path|basename }}'
   loop: '{{ dir_list.files }}'
+
+- name: phoronix-test-suite merge-results {{ dir_list.files | map(attribute="path") | map('basename') | join(' ') }}
+  command: phoronix-test-suite merge-results {{ dir_list.files | map(attribute="path") | map('basename') | join(' ') }}
+
+- name: Find /var/lib/phoronix-test-suite/test-results/ all directories
+  find:
+    paths: /var/lib/phoronix-test-suite/test-results
+    recurse: no
+    file_type: directory
+    contains: merge-*
+  register: dir_list
+- name: phoronix-test-suite result-file-to-pdf merge-*
+  command: phoronix-test-suite result-file-to-pdf {{ dir_list.files | map(attribute="path") | map('basename') | join(' ') }}
+- name: fetch merged pdf
+  src: /root/merge*.pdf
+  dest: {{dest_dir}}
+  flat: yes
+- name: Remove /var/lib/phoronix-test-suite/test-results/merge-* and /root/merge-*
+  command: rm -rf /var/lib/phoronix-test-suite/test-results/merge-* /root/merge-*
