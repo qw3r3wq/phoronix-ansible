@@ -1,4 +1,12 @@
 ---
+- name: Find /var/lib/phoronix-test-suite/test-results/ all directories
+  find:
+    paths: /var/lib/phoronix-test-suite/test-results
+    recurse: no
+    file_type: directory
+  register: dir_list
+- debug: var=dir_list.stdout_lines
+
 #- name: /var/lib/phoronix-test-suite/test-results/{{ item.value }}/composite.xml to {{ ansible_host }} {{ item.value }}
 #  xml:
 #    path: /var/lib/phoronix-test-suite/test-results/{{ item.value }}/composite.xml
