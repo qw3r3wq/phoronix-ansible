@@ -3,5 +3,5 @@
   vars: 
     - 
       command: "ls /var/lib/phoronix-test-suite/test-results/"
-      register: 
-        with_dict: dir_list
+      register: dir_list
+      with_dict: {{ dir_list }}
