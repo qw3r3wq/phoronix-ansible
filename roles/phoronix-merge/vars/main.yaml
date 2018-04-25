@@ -1,6 +1,5 @@
 ---
-- 
-  name: dir_list
+-
   vars:
     directory: "/var/lib/phoronix-test-suite/test-results/"
     - command: "ls {{directory}}"
