@@ -1,8 +1,8 @@
----
 vars:
   directory: /var/lib/phoronix-test-suite/test-results/
   - command: "ls {{directory}}"
     register: dir_list
+---
 {% for dirname in dir_list  %}
   - name: Set the /PhoronixTestSuite/System/Identifier={{ ansible_host }}
     xml:
