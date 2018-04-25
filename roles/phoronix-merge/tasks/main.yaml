@@ -46,7 +46,7 @@
 - name: fetch merged pdf
   fetch:
     src: item.path
-    dest: /tmp/merged-pdf-{{ansible_hostname}}/
+    dest: /home/centos/temp/
     #flat: yes
   loop: '{{ dir_list.files }}'
 - name: Remove /var/lib/phoronix-test-suite/test-results/merge-* and /root/merge-*
