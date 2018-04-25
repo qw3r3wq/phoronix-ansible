@@ -2,8 +2,9 @@
 - hosts: phoronix
   gather_facts: yes
   become: yes
+  vars:
+    dest_dir: '/tmp/{{ansible_hostname}}'
 
- 
   roles:
     #- common
     #- phoronix-install
