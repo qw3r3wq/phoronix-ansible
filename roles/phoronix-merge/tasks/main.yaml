@@ -35,19 +35,3 @@
 - name: phoronix-test-suite result-file-to-pdf merge-*
   command: phoronix-test-suite result-file-to-pdf {{ item.path|basename }}
   loop: '{{ dir_list.files }}'
-
-- name: Find /root/*pdf
-  find:
-    paths: /var/lib/phoronix-test-suite/test-results
-    recurse: no
-    file_type: file
-    contains: merge+(.*)pdf$
-  register: dir_list
-- name: fetch merged pdf
-  fetch:
-    src: item.path
-    dest: /home/centos/temp/
-    #flat: yes
-  loop: '{{ dir_list.files }}'
-- name: Remove /var/lib/phoronix-test-suite/test-results/merge-* and /root/merge-*
-  command: rm -rf /var/lib/phoronix-test-suite/test-results/merge-* /root/*pdf
