@@ -7,7 +7,7 @@
   register: dir_list
 #- debug: var=dir_list
 
-- name: {{ item.path }} to {{ ansible_host }} {{ item.path }}
+- name: '{{ item.path }} to {{ ansible_host }} {{ item.path }}'
   xml:
     path: {{ item.path }}/composite.xml
     xpath: /PhoronixTestSuite/System/Identifier
