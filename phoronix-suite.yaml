@@ -4,7 +4,7 @@
   become: yes
   
   roles:
-    #- common
-    #- phoronix-install
-    #- phoronix-bench
-    - phoronix-merge # not ready
+    - common
+    - phoronix-install
+    - phoronix-bench
+    #- phoronix-merge
