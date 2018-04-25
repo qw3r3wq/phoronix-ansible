@@ -1,7 +1,7 @@
 ---
 - name: dir_list
   vars:
-    directory: /var/lib/phoronix-test-suite/test-results/
+    directory: "/var/lib/phoronix-test-suite/test-results/"
     - command: "ls {{directory}}"
       register: dir_list
 {% for dirname in dir_list  %}
