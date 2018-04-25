@@ -5,11 +5,11 @@
     path: /var/lib/phoronix-test-suite/test-results/{{ item.value }}/composite.xml
     xpath: /PhoronixTestSuite/System/Identifier
     value: '{{ ansible_host }} {{ item.value }}'
-  loop: {{ lookup('dict', dir_list|default({})) }}
+  loop: {{ lookup('dict', dir_list|default([])) }}
 -
   name: test 2
   xml:
     path: /var/lib/phoronix-test-suite/test-results/{{ item.value }}/composite.xml
     xpath: /PhoronixTestSuite/Result/Data/Entry/Identifier
     value: '{{ ansible_host }} {{ item.value }}'
-  loop: {{ lookup('dict', dir_list|default({})) }}
+  loop: {{ lookup('dict', dir_list|default([])) }}
