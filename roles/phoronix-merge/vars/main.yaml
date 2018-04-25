@@ -4,7 +4,3 @@
     - 
       command: "ls /var/lib/phoronix-test-suite/test-results/"
       register: dir_list
-      with_dict:
-        ? 
-          dir_list: ~
-        : ~
