@@ -29,7 +29,7 @@
     paths: /var/lib/phoronix-test-suite/test-results
     recurse: no
     file_type: directory
-    contains: merge-*
+    contains: merge
   register: dir_list
 
 - name: phoronix-test-suite result-file-to-pdf merge-*
