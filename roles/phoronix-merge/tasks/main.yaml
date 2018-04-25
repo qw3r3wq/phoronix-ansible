@@ -1,5 +1,5 @@
 ---
-- name: for each test-result dir
+- name: "for each test-result dir"
   {% for dirname in dir_list  %}
     - name: Set the /PhoronixTestSuite/System/Identifier={{ ansible_host }}
       xml:
