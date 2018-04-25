@@ -2,7 +2,7 @@
 - 
   name: "/var/lib/phoronix-test-suite/test-results/{{ item.value }}/composite.xml to {{ ansible_host }} {{ item.value }}
   xml:
-    path: "/var/lib/phoronix-test-suite/test-results/{{ dir_list }}/composite.xml"
+    path: "/var/lib/phoronix-test-suite/test-results/{{ item.value }}/composite.xml"
     xpath: /PhoronixTestSuite/System/Identifier
     value: "{{ ansible_host }} {{ item.value }}"
   loop: "{{ lookup('dict', dir_list|default({})) }}"
