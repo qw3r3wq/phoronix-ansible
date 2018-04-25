@@ -4,16 +4,17 @@
     directory: "/var/lib/phoronix-test-suite/test-results/"
     - command: "ls {{directory}}"
       register: dir_list
-{% for dirname in dir_list  %}
-  - name: Set the /PhoronixTestSuite/System/Identifier={{ ansible_host }}
-    xml:
-      path: /var/lib/phoronix-test-suite/test-results/{{ dirname }}/composite.xml
-      xpath: /PhoronixTestSuite/System/Identifier
-      value: "{{ ansible_host }} {{ inventory_dir.split('/')[0:-1]|join('/') }} {{ inventory_dir | dirname }}"
-  - name: Set the /PhoronixTestSuite/Result/Data/Entry/Identifier={{ ansible_host }}
-    xml:
-      path: /var/lib/phoronix-test-suite/test-results/{{ dirname }}/composite.xml
-      xpath: /PhoronixTestSuite/Result/Data/Entry/Identifier
-      value: "{{ ansible_host }} {{ inventory_dir.split('/')[0:-1]|join('/') }} {{ inventory_dir | dirname }}"
-  #- name: run phoronix batch-benchmark tests pts/john-the-ripper pts/phpbench pts/pybench pts/scimark2 pts/ramspeed pts/stream pts/x264 pts/ffmpeg system/apache pts/povray pts/openssl pts/build-linux-kernel pts/gnupg pts/compression pts/redis
-  #  command: phoronix-test-suite batch-benchmark pts/john-the-ripper pts/phpbench pts/pybench pts/scimark2 pts/ramspeed pts/stream pts/x264 pts/ffmpeg system/apache pts/povray pts/openssl pts/build-linux-kernel pts/gnupg pts/compression pts/redis
+tasks:
+  {% for dirname in dir_list  %}
+    - name: Set the /PhoronixTestSuite/System/Identifier={{ ansible_host }}
+      xml:
+        path: /var/lib/phoronix-test-suite/test-results/{{ dirname }}/composite.xml
+        xpath: /PhoronixTestSuite/System/Identifier
+        value: "{{ ansible_host }} {{ inventory_dir.split('/')[0:-1]|join('/') }} {{ inventory_dir | dirname }}"
+    - name: Set the /PhoronixTestSuite/Result/Data/Entry/Identifier={{ ansible_host }}
+      xml:
+        path: /var/lib/phoronix-test-suite/test-results/{{ dirname }}/composite.xml
+        xpath: /PhoronixTestSuite/Result/Data/Entry/Identifier
+        value: "{{ ansible_host }} {{ inventory_dir.split('/')[0:-1]|join('/') }} {{ inventory_dir | dirname }}"
+    #- name: run phoronix batch-benchmark tests pts/john-the-ripper pts/phpbench pts/pybench pts/scimark2 pts/ramspeed pts/stream pts/x264 pts/ffmpeg system/apache pts/povray pts/openssl pts/build-linux-kernel pts/gnupg pts/compression pts/redis
+    #  command: phoronix-test-suite batch-benchmark pts/john-the-ripper pts/phpbench pts/pybench pts/scimark2 pts/ramspeed pts/stream pts/x264 pts/ffmpeg system/apache pts/povray pts/openssl pts/build-linux-kernel pts/gnupg pts/compression pts/redis
