@@ -1,11 +1,11 @@
 ---
 loop: "{{ dir_list }}"
-  - name: Set the /PhoronixTestSuite/System/Identifier={{ ansible_host }}
+  - name: "Set the /PhoronixTestSuite/System/Identifier={{ ansible_host }}"
     xml:
       path: /var/lib/phoronix-test-suite/test-results/{{ dirname }}/composite.xml
       xpath: /PhoronixTestSuite/System/Identifier
       value: "{{ ansible_host }} {{ inventory_dir.split('/')[0:-1]|join('/') }} {{ inventory_dir | dirname }}"
-  - name: Set the /PhoronixTestSuite/Result/Data/Entry/Identifier={{ ansible_host }}
+  - name: "Set the /PhoronixTestSuite/Result/Data/Entry/Identifier={{ ansible_host }}"
     xml:
       path: /var/lib/phoronix-test-suite/test-results/{{ dirname }}/composite.xml
       xpath: /PhoronixTestSuite/Result/Data/Entry/Identifier
