@@ -11,7 +11,7 @@
   xml:
     path: '{{ item.path }}/composite.xml'
     xpath: /PhoronixTestSuite/System/Identifier
-    value: '{{ inventory_host }} {{ item.path|basename }}'
+    value: '{{ ansible_hostname }} {{ item.path|basename }}'
   loop: '{{ dir_list.files }}'
 #- name: test 2
 #  xml:
