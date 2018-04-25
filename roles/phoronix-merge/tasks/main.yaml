@@ -1,10 +1,10 @@
 ---
 loop: "{{ dir_list }}"
-  - xml:
+  xml:
     path: "/var/lib/phoronix-test-suite/test-results/{{ dir_list }}/composite.xml"
     xpath: /PhoronixTestSuite/System/Identifier
     value: "{{ ansible_host }} {{ dir_list }}"
-  - xml:
+  xml:
     path: /var/lib/phoronix-test-suite/test-results/{{ dir_list }}/composite.xml
     xpath: /PhoronixTestSuite/Result/Data/Entry/Identifier
     value: "{{ ansible_host }} {{ dir_list }}"
