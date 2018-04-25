@@ -3,7 +3,4 @@
   vars: 
     - 
       command: "ls /var/lib/phoronix-test-suite/test-results/"
-      register: dir_list
-- debug:
-    var: result
-    verbosity: 2
+      register: dir_list.stdout_lines
