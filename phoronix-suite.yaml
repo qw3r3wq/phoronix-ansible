@@ -1,4 +1,4 @@
-dest_dir: '/tmp/{{ansible_hostname}}'
+dest_dir: /tmp/
 ---
 - hosts: phoronix
   gather_facts: yes
