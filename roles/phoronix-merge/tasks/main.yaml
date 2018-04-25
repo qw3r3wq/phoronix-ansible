@@ -1,6 +1,6 @@
 ---
 - 
-  name: "/var/lib/phoronix-test-suite/test-results/{{ item.value }}/composite.xml to {{ ansible_host }} {{ item.value }}
+  name: /var/lib/phoronix-test-suite/test-results/{{ item.value }}/composite.xml to {{ ansible_host }} {{ item.value }}
   xml:
     path: /var/lib/phoronix-test-suite/test-results/{{ item.value }}/composite.xml
     xpath: /PhoronixTestSuite/System/Identifier
