@@ -1,6 +1,6 @@
----
--
-  vars:
-    directory: "/var/lib/phoronix-test-suite/test-results/"
-    - command: "ls {{directory}}"
+--- 
+- 
+  vars: 
+    - 
+      command: "ls /var/lib/phoronix-test-suite/test-results/"
       register: dir_list
