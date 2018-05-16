@@ -17,6 +17,6 @@ roles:
 # Thank you goes to:
 Domas Tamašauskas (co-worker)
 
-zoredache - IRC help :) in OFTC #ansible
+zoredache - IRC help :) in FreeNode #ansible
 
-agaffney - IRC help :) in OFTC #ansible
+agaffney - IRC help :) in FreeNode #ansible
